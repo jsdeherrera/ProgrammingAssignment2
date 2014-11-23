@@ -4,13 +4,34 @@
 ## Write a short comment describing this function
 
 ## Initial edits to test commit - this is the only line changed from the initial file
-makeCacheMatrix <- function(x = matrix()) {
+makeCacheMatrix <- function(x = matrix()) 
+{ 
+         m <- NULL 
+         set <- function(y) { 
+                 x <<- y 
+                 m <<- NULL 
+         } 
+         get <- function() x 
+         setinv <- function(cacheSolve) m <<- cacheSolve 
+         getinv <- function() m 
+         list(set = set, get = get, 
+              setinv = setinv, 
+              getinv = getinv) 
+} 
 
-}
 
 
 ## Write a short comment describing this function
 
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-}
+cacheSolve <- function(x, ...) { 
+         ## Return a matrix that is the inverse of 'x' 
+         m <- x$getinv() 
+         if(!is.null(m)) { 
+                 message("getting cached data") 
+                 return(m) 
+         } 
+         data <- x$get() 
+         m <- solve(data) %*% data 
+         x$setinv(m) 
+         m 
+} 
