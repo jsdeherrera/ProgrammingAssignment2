@@ -3,6 +3,7 @@
 
 ## Write a short comment describing this function
 
+## Initial edits to test commit - this is the only line changed from the initial file
 makeCacheMatrix <- function(x = matrix()) {
 
 }
