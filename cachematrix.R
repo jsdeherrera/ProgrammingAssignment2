@@ -50,12 +50,15 @@ cacheSolve <- function(x, ...)
                  return(m) 
          }
          
-         # If m is null, then the function continues to the following series of statements which 
+         # If m is null (using the else statement), then the function continues to the following series of statements which 
          # solve for the inverse of x and return that value
+         else
+         {
          data <- x$get() 
-         m <- solve(data) %*% data 
+         m <- solve(data)
          x$setinv(m) 
-         m 
+         m
+         }
 } 
 
 # This is a working example for a simple 2x2 matrix
